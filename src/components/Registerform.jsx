@@ -20,8 +20,11 @@ const RegisterForm = () => {
         favorits: ['']
     };
 
-    const onSubmit = values => {
+    const onSubmit = (values, submitProps) => {
         console.log(values);
+        setTimeout(() => {
+            submitProps.setSubmitting(false);
+        }, 5000);
     };
 
     const validationSchema = Yup.object({
@@ -70,9 +73,6 @@ const RegisterForm = () => {
                                     <FastField name='password'>
                                         {props => <PersonField {...props} />}
                                     </FastField>
-                                    <ErrorMessage name='password'>
-                                        {error => <small className='d-block text-center text-danger'>{error}</small>}
-                                    </ErrorMessage>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="bio" className="form-label">بیوگرافی</label>
@@ -115,15 +115,17 @@ const RegisterForm = () => {
                                     </FieldArray>
                                 </div>
                                 <div className='text-center w-100'>
-                                    <button type="submit" className="btn btn-primary">ثبت نام</button>
+                                    <button type="submit" className="btn btn-primary" disabled={!(formik.dirty && formik.isValid) || formik.isSubmitting}>
+                                        {
+                                            formik.isSubmitting ? (
+                                                <div className="spinner-border" role="status">
+                                                    <span className="visually-hidden">Loading...</span>
+                                                </div>
+                                            ) : 
+                                            ("ثبت نام")
+                                        }
+                                    </button>
                                 </div>
-                                <button className='btn btn-success' type='button' onClick={() => formik.validateField('bio')}>بیوگرافی</button>
-                                <button className='btn btn-success' type='button' onClick={() => formik.validateForm()}>اعتبار سنجی فرم</button>
-                                <button className='btn btn-danger' type='button' onClick={() => formik.setFieldTouched('bio')}>مشاهده بیوگرافی</button>
-                                <button className='btn btn-danger' type='button' onClick={() => formik.setTouched({
-                                    name: true,
-                                    email: true
-                                })}>مشاهده فرم ها</button>
                             </Form>
                         </div>
                     </div>
