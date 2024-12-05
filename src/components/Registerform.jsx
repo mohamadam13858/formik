@@ -6,8 +6,7 @@ import Favoritsfield from './Favoritsfield';
 import PersonError from './PersonError';
 
 const RegisterForm = () => {
-    const [savedData, setSavedData] = useState(null)
-    const [myValues, setMyValues] = useState(null)
+    const [savedData, setSavedData] = useState(null);
 
     const initialValues = {
         name: '',
@@ -23,23 +22,25 @@ const RegisterForm = () => {
     };
 
     const handleSaveData = (formik) => {
-        localStorage.setItem('savedData', JSON.stringify(formik.values))
-    }
+        localStorage.setItem('savedData', JSON.stringify(formik.values));
+    };
 
-    const handleGetSaveData = ()=>[
-        setMyValues(savedData)
-    ]
+    const handleGetSaveData = (setValues) => {
+        if (savedData) {
+            setValues(savedData);
+        }
+    };
 
     useEffect(() => {
-        const localSavedData = JSON.parse(localStorage.setItem('sevedData'));
-        setSavedData(localSavedData)
-
-    }, [])
+        const localSavedData = JSON.parse(localStorage.getItem('savedData'));
+        setSavedData(localSavedData);
+    }, []);
 
     const onSubmit = (values, submitProps) => {
         console.log(values);
         setTimeout(() => {
             submitProps.setSubmitting(false);
+            submitProps.resetForm(); // Reset the form after submission
         }, 5000);
     };
 
@@ -58,7 +59,7 @@ const RegisterForm = () => {
 
     return (
         <Formik
-            initialValues={myValues || initialValues}
+            initialValues={initialValues}
             onSubmit={onSubmit}
             validationSchema={validationSchema}
         >
@@ -145,7 +146,7 @@ const RegisterForm = () => {
                                         <button type='button' className=' btn btn-warning mx-3' onClick={() => handleSaveData(formik)}>ذخیره فرم</button>
                                     ) : null}
                                     {savedData ? (
-                                        <button type='button' className=' btn btn-success mx-3' onClick={() => handleGetSaveData()}>پر شدن فرم</button>
+                                        <button type='button' className=' btn btn-success mx-3' onClick={() => handleGetSaveData(formik.setValues)}>پر شدن فرم</button>
                                     ) : null}
                                     {formik.dirty ? (
                                         <button type='reset' className=' btn btn-danger mx-3'>پاکسازی</button>
