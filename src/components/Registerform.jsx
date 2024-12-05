@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ErrorMessage, FastField, FieldArray, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import PersonField from './PersonField';
@@ -6,9 +6,11 @@ import Favoritsfield from './Favoritsfield';
 import PersonError from './PersonError';
 
 const RegisterForm = () => {
+    const [savedData, setSavedData] = useState(null)
+    const [myValues, setMyValues] = useState(null)
 
     const initialValues = {
-        name: 'qasem',
+        name: '',
         email: '',
         password: '',
         bio: '',
@@ -19,6 +21,20 @@ const RegisterForm = () => {
         phone: ['', ''],
         favorits: ['']
     };
+
+    const handleSaveData = (formik) => {
+        localStorage.setItem('savedData', JSON.stringify(formik.values))
+    }
+
+    const handleGetSaveData = ()=>[
+        setMyValues(savedData)
+    ]
+
+    useEffect(() => {
+        const localSavedData = JSON.parse(localStorage.setItem('sevedData'));
+        setSavedData(localSavedData)
+
+    }, [])
 
     const onSubmit = (values, submitProps) => {
         console.log(values);
@@ -42,7 +58,7 @@ const RegisterForm = () => {
 
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={myValues || initialValues}
             onSubmit={onSubmit}
             validationSchema={validationSchema}
         >
@@ -121,10 +137,19 @@ const RegisterForm = () => {
                                                 <div className="spinner-border" role="status">
                                                     <span className="visually-hidden">Loading...</span>
                                                 </div>
-                                            ) : 
-                                            ("ثبت نام")
+                                            ) :
+                                                ("ثبت نام")
                                         }
                                     </button>
+                                    {(formik.isValid && formik.dirty) ? (
+                                        <button type='button' className=' btn btn-warning mx-3' onClick={() => handleSaveData(formik)}>ذخیره فرم</button>
+                                    ) : null}
+                                    {savedData ? (
+                                        <button type='button' className=' btn btn-success mx-3' onClick={() => handleGetSaveData()}>پر شدن فرم</button>
+                                    ) : null}
+                                    {formik.dirty ? (
+                                        <button type='reset' className=' btn btn-danger mx-3'>پاکسازی</button>
+                                    ) : null}
                                 </div>
                             </Form>
                         </div>
