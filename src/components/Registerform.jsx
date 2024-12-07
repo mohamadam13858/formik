@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { ErrorMessage, FastField, FieldArray, Form, Formik } from 'formik';
+import { FieldArray, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import PersonField from './PersonField';
 import Favoritsfield from './Favoritsfield';
-import PersonError from './PersonError';
 import FormikControl from './formikElemens/FormikControl';
 
 const RegisterForm = () => {
     const [savedData, setSavedData] = useState(null);
+    
 
     const initialValues = {
         name: '',
@@ -19,8 +18,30 @@ const RegisterForm = () => {
             postalcode: '',
         },
         phone: ['', ''],
-        favorits: ['']
+        favorits: [''],
+        education: 1 , 
+        gender:1,
+        skills:1
+
     };
+    const education = [
+        {id:1 , values:"ابتدایی"},
+        {id:2 , values:"سیکل"},
+        {id:3 , values:"دیپلم"},
+        {id:4 , values:"لیسانس"},
+    ]
+
+    const gender = [
+        {id:1 , values:"مرد"},
+        {id:2 , values:"زن"}
+    ]
+
+    const skills = [
+        {id:1 , values:"html"},
+        {id:2 , values:"css"},
+        {id:3 , values:"js"},
+        {id:4 , values:"react"}
+    ]
 
     const handleSaveData = (formik) => {
         localStorage.setItem('savedData', JSON.stringify(formik.values));
@@ -119,6 +140,22 @@ const RegisterForm = () => {
                                         label="تلفن1"
                                         name="phone[1]" />
                                 </div>
+                                <FormikControl
+                                    control="select"
+                                    label="تحصیلات"
+                                    name="education"
+                                    options={education} />
+                                <FormikControl
+                                    control="radio"
+                                    label="جنسیت"
+                                    name="radio"
+                                    options={gender} />
+                                <FormikControl
+                                    control="checkbox"
+                                    label="تخصص"
+                                    name="skill"
+                                    options={skills} />
+                                    
 
                                 <div className="mb-3">
                                     <FieldArray name='favorits'>
