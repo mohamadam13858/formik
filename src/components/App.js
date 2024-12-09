@@ -5,6 +5,7 @@ import Register from './Register';
 const App = ()=>{
     return (
         <div>
+            {/* <Login/> */}
             <Register/>
         </div>
     ) 

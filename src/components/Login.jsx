@@ -21,8 +21,8 @@ const validationSchema = Yup.object({
 
 const Login = () => {
     return (
-        <div className="limiter">
-            <div className="container-login100">
+        <div class="limiter">
+            <div class="container-login100">
                 <Formik
                 initialValues={initialValues}
                 onSubmit={onSubmit}
@@ -32,9 +32,9 @@ const Login = () => {
                         formik=>{
                             console.log(formik);
                             return(                                
-                                <div className="wrap-login100">
-                                    <Form className="login100-form validate-form pos-relative d-flex flex-column align-items-center justify-content-center">
-                                        <span className="login100-form-title">
+                                <div class="wrap-login100">
+                                    <Form class="login100-form validate-form pos-relative d-flex flex-column align-items-center justify-content-center">
+                                        <span class="login100-form-title">
                                             ورود اعضا
                                         </span>
 
@@ -56,24 +56,24 @@ const Login = () => {
                                         label="رمز عبور"
                                         />
                                         
-                                        <div className="container-login100-form-btn">
-                                            <button className="login100-form-btn">
+                                        <div class="container-login100-form-btn">
+                                            <button class="login100-form-btn">
                                                 ورود
                                             </button>
                                         </div>
-                                        <div className="text-center p-t-12 p-b-45">
-                                            <a className="txt2" href="#">
+                                        <div class="text-center p-t-12 p-b-45">
+                                            <a class="txt2" href="#">
                                                 فراموش کردید؟
                                             </a>
                                         </div>
-                                        <div className="text-center pos-absolute m-auto w-100 bottom-0">
-                                            <a className="txt2" href="#">
+                                        <div class="text-center pos-absolute m-auto w-100 bottom-0">
+                                            <a class="txt2" href="#">
                                                 ثبت نام
-                                                <i className="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
+                                                <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
                                             </a>
                                         </div>
                                     </Form>
-                                    <div className="login100-pic js-tilt" data-tilt>
+                                    <div class="login100-pic js-tilt" data-tilt>
                                         <img src="/auth/images/img-01.png" alt="IMG"/>
                                     </div>
                                 </div>
