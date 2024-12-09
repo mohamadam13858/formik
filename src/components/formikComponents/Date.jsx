@@ -17,7 +17,7 @@ const months = [
     {id: 12 , value: "اسفند"},
 ]
 
-const Input = ({formik,name,icon,label}) => {
+const Date = ({formik,name,icon,label}) => {
 
     const [day , setDay] = useState();
     const [month , setMonth] = useState();
@@ -104,4 +104,4 @@ const Input = ({formik,name,icon,label}) => {
     );
 }
 
-export default Input;
+export default Date;
