@@ -21,7 +21,7 @@ const RegisterForm = () => {
         favorits: [''],
         education: 1 , 
         gender:1,
-        skills:1
+        skills:[]
 
     };
     const education = [
@@ -37,10 +37,10 @@ const RegisterForm = () => {
     ]
 
     const skills = [
-        {id:1 , values:"html"},
-        {id:2 , values:"css"},
-        {id:3 , values:"js"},
-        {id:4 , values:"react"}
+        {id:1 , values:'html'},
+        {id:2 , values:'css'},
+        {id:3 , values:'js'},
+        {id:4 , values:'react'}
     ]
 
     const handleSaveData = (formik) => {

@@ -18,7 +18,7 @@ const Radio = (props) => {
                                 id={o.value}
                                 {...field}
                                 value={o.id}
-                                checked={field.value} />
+                                checked={field.value == o.id} />
 
                                 <label htmlFor={`radio${o.id}`} className=" ms-ms-4">{o.values}</label>
 

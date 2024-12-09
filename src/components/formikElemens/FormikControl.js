@@ -16,10 +16,11 @@ const FormikControl = (props)=>{
             return <Select {...props}/>
         case "radio":
             return <Radio {...props}/>
-        case "skill":
+        case "checkbox":
             return <Checkbox {...props}/>
     
         default:
+            return null
     }
 }
 
