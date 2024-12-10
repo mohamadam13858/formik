@@ -1,8 +1,8 @@
 import React from 'react';
 import Input from './Input';
 import Radio from './Radio';
-import File from './File';
 import Date from './Date';
+import File from './File';
 
 const Formikcontrol = (props) => {
     switch (props.control) {
